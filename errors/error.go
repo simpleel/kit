@@ -17,7 +17,11 @@ func NewCodeError(code int, err error) CodeError {
 	}
 }
 
-func (e CodeError) Error() error {
+func (e CodeError) Error() string {
+	return e.err.Error()
+}
+
+func (e CodeError) Raw() error {
 	return e.err
 }
 
