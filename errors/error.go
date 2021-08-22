@@ -1,46 +1,29 @@
 package errors
 
-import "net/http"
-
 type CodeError struct {
 	code int
-	err  string
+	err  error
 }
 
 type response struct {
-	ResultCode int    `json:"resultCode"`
-	ResultMsg  string `json:"resultMsg"`
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
 }
 
-func HTTPErrorHandler(err error) (int, interface{}) {
-	switch e := err.(type) {
-	case CodeError:
-		return http.StatusOK, e.Data()
-	default:
-		return http.StatusInternalServerError, nil
-	}
-}
-func New(err string) CodeError {
-	return CodeError{
-		code: http.StatusInternalServerError,
-		err:  err,
-	}
-}
-
-func NewCodeError(code int, err string) CodeError {
+func NewCodeError(code int, err error) CodeError {
 	return CodeError{
 		code: code,
 		err:  err,
 	}
 }
 
-func (e CodeError) Error() string {
+func (e CodeError) Error() error {
 	return e.err
 }
 
 func (e CodeError) Data() response {
 	return response{
-		ResultCode: e.code,
-		ResultMsg:  e.err,
+		Code: e.code,
+		Msg:  e.err.Error(),
 	}
 }
