@@ -1,5 +1,7 @@
 package errors
 
+import "errors"
+
 type CodeError struct {
 	code int
 	err  error
@@ -10,10 +12,22 @@ type response struct {
 	Msg  string `json:"msg"`
 }
 
-func NewCodeError(code int, err error) CodeError {
+func New(err error) CodeError {
+	return CodeError{
+		err: err,
+	}
+}
+
+func NewMsg(msg string) CodeError {
+	return CodeError{
+		err: errors.New(msg),
+	}
+}
+
+func NewCodeMsg(code int, msg string) CodeError {
 	return CodeError{
 		code: code,
-		err:  err,
+		err:  errors.New(msg),
 	}
 }
 
