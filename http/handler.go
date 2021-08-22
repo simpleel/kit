@@ -10,7 +10,7 @@ import (
 
 // Unauthorized 输出未通过接口验证时的错误状态
 func Unauthorized(w http.ResponseWriter, r *http.Request, err error) {
-	httpx.WriteJson(w, http.StatusUnauthorized, errors.NewCodeError(http.StatusUnauthorized, http.StatusText(http.StatusUnauthorized)).Data())
+	httpx.WriteJson(w, http.StatusUnauthorized, errors.NewCodeMsg(http.StatusUnauthorized, http.StatusText(http.StatusUnauthorized)).Data())
 }
 
 // Write 输出 res 对象或错误消息
