@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"code.simpleel.com/simpleel/kit/errors"
+	"code.simpleel.com/simpleel/kit/http/errcode"
 
 	"github.com/tal-tech/go-zero/rest/httpx"
 )
@@ -19,7 +20,8 @@ func Write(w http.ResponseWriter, res interface{}, err error) {
 		if e, ok := err.(errors.CodeError); ok {
 			httpx.OkJson(w, e.Data())
 		} else {
-			httpx.Error(w, err)
+			err := errors.NewCodeMsg(errcode.FailedCode, err.Error())
+			httpx.OkJson(w, err)
 		}
 	} else {
 		httpx.OkJson(w, res)
