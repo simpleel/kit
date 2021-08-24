@@ -14,3 +14,8 @@ func NewInternalServerError(msg string) error {
 func NewOprationFaildError(msg string) error {
 	return errors.NewCodeMsg(errcode.FailedCode, msg)
 }
+
+// NewAccessDenyError 返回一个越权错误
+func NewAccessDenyError(msg string) error {
+	return errors.NewCodeMsg(errcode.ErrAccessDenyCode, msg)
+}
