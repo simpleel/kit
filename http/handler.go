@@ -17,12 +17,11 @@ func Unauthorized(w http.ResponseWriter, r *http.Request, err error) {
 // Write 输出 res 对象或错误消息
 func Write(w http.ResponseWriter, res interface{}, err error) {
 	if err != nil {
-		if e, ok := err.(errors.CodeError); ok {
-			httpx.OkJson(w, e.Data())
-		} else {
-			err := errors.NewCodeMsg(errcode.FailedCode, err.Error())
-			httpx.OkJson(w, err)
+		e, ok := err.(errors.CodeError)
+		if !ok {
+			e = errors.NewCodeMsg(errcode.FailedCode, err.Error())
 		}
+		httpx.OkJson(w, e.Data())
 	} else {
 		httpx.OkJson(w, res)
 	}
