@@ -13,10 +13,10 @@ func Unmarshal(settings Settings, in string) error {
 }
 
 // Marshal 将实体对象转换为 JSON 字符串
-func Marshal(settings Settings) string {
+func Marshal(settings Settings) (string, error) {
 	b, err := json.Marshal(settings)
 	if err != nil {
-		return ""
+		return "", err
 	}
-	return string(b)
+	return string(b), nil
 }
