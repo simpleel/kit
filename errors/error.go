@@ -8,8 +8,8 @@ type CodeError struct {
 }
 
 type response struct {
-	Code int    `json:"code"`
-	Msg  string `json:"msg"`
+	ErrCode int    `json:"errcode"`
+	ErrMsg  string `json:"errmsg"`
 }
 
 func New(err error) CodeError {
@@ -41,7 +41,7 @@ func (e CodeError) Raw() error {
 
 func (e CodeError) Data() response {
 	return response{
-		Code: e.code,
-		Msg:  e.err.Error(),
+		ErrCode: e.code,
+		ErrMsg:  e.err.Error(),
 	}
 }
