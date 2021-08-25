@@ -4,7 +4,7 @@ import "encoding/json"
 
 // Settings 表示一个应用配置的实体对象
 type Settings interface {
-	Name()
+	Name() string
 }
 
 // Unmarshal 将 JSON 字符串转换为实体对象，in 必须是 JSON 格式的字符串。
