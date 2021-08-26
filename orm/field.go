@@ -20,21 +20,25 @@ type Field struct {
 }
 
 // GetUpdateFieldValues 获取 data 对象的字段和值，ignoreFields 表示要忽略的字段，常用在排除主键字段
-func GetUpdateFieldValues(data interface{}, quote string, ignoreFields ...string) (string, []interface{}) {
+func GetUpdateFieldValues(data interface{}, quote string, pg bool, ignoreFields ...string) (string, []interface{}) {
 	var (
+		label  = "?"
 		fields []string
 		values []interface{}
 	)
 
 	model := reflect.ValueOf(data)
 	fieldValues := GetFields(data)
-	for _, f := range fieldValues {
+	for i, f := range fieldValues {
 		v, isZero := f.ValueOf(model)
 		if !isZero &&
 			(len(ignoreFields) == 0 ||
 				!stringx.Contains(ignoreFields, f.FieldName) ||
 				!stringx.Contains(ignoreFields, fmt.Sprint(quote, f.FieldName, quote))) {
-			fields = append(fields, fmt.Sprint(quote, f.FieldName, quote, "=?"))
+			if pg {
+				label = fmt.Sprintf("$%d", i+1)
+			}
+			fields = append(fields, fmt.Sprint(quote, f.FieldName, quote, "=", label))
 			values = append(values, v)
 		}
 	}
