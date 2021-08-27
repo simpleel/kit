@@ -9,7 +9,7 @@ type CodeError struct {
 
 type response struct {
 	ErrCode int    `json:"errcode"`
-	ErrMsg  string `json:"errmsg"`
+	ErrMsg  string `json:"errmsg,omitempty"`
 }
 
 func New(err error) CodeError {
