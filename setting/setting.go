@@ -16,7 +16,7 @@ func Unmarshal(settings Settings, in string) error {
 func Marshal(settings Settings) (string, error) {
 	b, err := json.Marshal(settings)
 	if err != nil {
-		return "", err
+		return "{}", err
 	}
 	return string(b), nil
 }
