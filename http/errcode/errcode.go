@@ -31,24 +31,12 @@ const (
 	ErrUserInvalidProviderMsg    = "不支持的登录方式"
 	ErrUserEmailNotVerifyCode    = 43108
 
-	// 创建支付订单失败
-	ErrPaymentPlaceOrderCode = 43200
-	// 交易被拒绝
-	ErrPaymentDenyCode = 43204
-	// 交易过期
-	ErrPaymentExpireCode = 43205
-	// 交易过程中发生错误
-	ErrPaymentFailedCode = 43210
-
 	// 访问被拒绝
 	ErrAccessDenyCode = 43003
 
 	// 验证失败
 	ErrAuthConfigCode = 47001
 	ErrAuthFaildCode  = 47003
-
-	ErrUserNotBindCode = 43300
-	ErrUserBindedCode  = 43301
 
 	// 接口校验失败
 	ErrAccessTokenInvalidCode = 43000
@@ -57,8 +45,4 @@ const (
 	// 服务器内部错误
 	ErrServerCode = 50000
 	ErrServerMsg  = "服务器内部错误"
-
-	// 路由器已存在
-	ErrRouterBindedSelfCode = 44001
-	ErrRouterBindedCode     = 44002
 )
