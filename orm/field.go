@@ -45,7 +45,7 @@ func GetUpdateFieldValues(data interface{}, quote string, pg bool, ignoreFields 
 		}
 	}
 
-	updateSQL := ""
+	var updateSQL string
 	if len(fields) > 0 {
 		updateSQL = strings.Join(fields, ", ")
 	}
