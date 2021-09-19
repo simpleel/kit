@@ -3,8 +3,8 @@ package http
 import (
 	"strings"
 
-	"code.simpleel.com/simpleel/kit/errors"
-	"code.simpleel.com/simpleel/kit/http/errcode"
+	"simpleel/kit/errors"
+	"simpleel/kit/http/errcode"
 )
 
 // NewInternalServerError 返回一个服务器内部错误
