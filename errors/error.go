@@ -8,8 +8,8 @@ type CodeError struct {
 }
 
 type response struct {
-	ErrCode int    `json:"errcode"`
-	ErrMsg  string `json:"errmsg,omitempty"`
+	ErrCode int    `json:"code"`
+	ErrMsg  string `json:"message,omitempty"`
 }
 
 func New(err error) CodeError {
