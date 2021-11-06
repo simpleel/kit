@@ -52,7 +52,7 @@ func GetUpdateFieldValues(data interface{}, quote string, pg bool, ignoreFields 
 	return updateSQL, values
 }
 
-// GetFields 获取 data 对象的字段
+// GetFields 获取 data 对象的字段
 func GetFields(data interface{}) []Field {
 	var fields []Field
 
