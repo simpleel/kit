@@ -24,16 +24,3 @@ func ErrorHandler(err error) (int, interface{}) {
 		return http.StatusOK, codeErr.Data()
 	}
 }
-
-// Write 输出 res 对象或错误消息
-func Write(w http.ResponseWriter, res interface{}, err error) {
-	if err != nil {
-		e, ok := err.(errors.CodeError)
-		if !ok {
-			e = errors.NewCodeError(errcode.FailedCode, err.Error())
-		}
-		httpx.OkJson(w, e.Data())
-	} else {
-		httpx.OkJson(w, res)
-	}
-}

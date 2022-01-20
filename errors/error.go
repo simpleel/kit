@@ -24,23 +24,19 @@ func NewError(msg string) CodeError {
 	}
 }
 
-func NewCodeError(code int, msg string) CodeError {
-	return CodeError{
+func NewCodeError(code int, msg string) *CodeError {
+	return &CodeError{
 		code: code,
 		err:  errors.New(msg),
 	}
 }
 
-func (e CodeError) Error() string {
+func (e *CodeError) Error() string {
 	return e.err.Error()
 }
 
-func (e CodeError) Raw() error {
-	return e.err
-}
-
-func (e CodeError) Data() response {
-	return response{
+func (e *CodeError) Data() *response {
+	return &response{
 		ErrCode: e.code,
 		ErrMsg:  e.err.Error(),
 	}
