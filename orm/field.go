@@ -33,9 +33,7 @@ func GetUpdateFieldValues(data interface{}, quote string, pg bool, ignoreFields 
 	for _, f := range fieldValues {
 		v, isZero := f.ValueOf(model)
 		if !isZero &&
-			(len(ignoreFields) == 0 ||
-				!stringx.Contains(ignoreFields, f.FieldName) ||
-				!stringx.Contains(ignoreFields, fmt.Sprint(quote, f.FieldName, quote))) {
+			(len(ignoreFields) == 0 || !(stringx.Contains(ignoreFields, f.FieldName) || stringx.Contains(ignoreFields, fmt.Sprint(quote, f.FieldName, quote)))) {
 			index++
 			if pg {
 				label = fmt.Sprintf("$%d", index+1)
