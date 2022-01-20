@@ -18,13 +18,13 @@ func New(err error) CodeError {
 	}
 }
 
-func NewMsg(msg string) CodeError {
+func NewError(msg string) CodeError {
 	return CodeError{
 		err: errors.New(msg),
 	}
 }
 
-func NewCodeMsg(code int, msg string) CodeError {
+func NewCodeError(code int, msg string) CodeError {
 	return CodeError{
 		code: code,
 		err:  errors.New(msg),
