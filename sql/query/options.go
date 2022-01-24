@@ -2,9 +2,9 @@ package query
 
 // Options 表示一个通用的查询参数
 type Options struct {
-	Page     int64
-	PageSize int64
-	OrderBy  string
+	Start   int64
+	Limit   int64
+	OrderBy string
 }
 
 // NewOption 调用闭包函数设置查询参数
@@ -13,28 +13,28 @@ func NewOption(opts ...Option) Options {
 	for _, opt := range opts {
 		opt(&options)
 	}
-	if options.Page <= 0 {
-		options.Page = 1
+	if options.Start <= 0 {
+		options.Start = 1
 	}
-	if options.PageSize < 1 {
-		options.PageSize = 20
+	if options.Limit < 1 {
+		options.Limit = 20
 	}
 	return options
 }
 
 type Option func(*Options)
 
-// WithPage 设置当前页
-func WithPage(page int64) Option {
+// WithStart 设置当前页
+func WithStart(start int64) Option {
 	return func(qo *Options) {
-		qo.Page = page
+		qo.Start = start
 	}
 }
 
-// WithPageSize 设置每页显示数量
-func WithPageSize(pageSize int64) Option {
+// WithLimit 设置每页显示数量
+func WithLimit(limit int64) Option {
 	return func(qo *Options) {
-		qo.PageSize = pageSize
+		qo.Limit = limit
 	}
 }
 
