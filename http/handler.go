@@ -3,8 +3,8 @@ package http
 import (
 	"net/http"
 
-	"simpleel/kit/errors"
-	"simpleel/kit/http/errcode"
+	"go.simpleel.com/kit/errors"
+	"go.simpleel.com/kit/http/errcode"
 
 	"github.com/tal-tech/go-zero/rest/httpx"
 )

@@ -1,4 +1,4 @@
-module simpleel/kit
+module go.simpleel.com/kit
 
 go 1.15
 
