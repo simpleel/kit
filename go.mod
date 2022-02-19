@@ -2,4 +2,4 @@ module go.simpleel.com/kit
 
 go 1.15
 
-require github.com/tal-tech/go-zero v1.2.5
+require github.com/zeromicro/go-zero v1.3.0

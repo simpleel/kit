@@ -6,7 +6,7 @@ import (
 	"go.simpleel.com/kit/errors"
 	"go.simpleel.com/kit/http/errcode"
 
-	"github.com/tal-tech/go-zero/rest/httpx"
+	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
 // Unauthorized 输出未通过接口验证时的错误状态
