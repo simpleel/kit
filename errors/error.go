@@ -18,16 +18,16 @@ func New(err error) CodeError {
 	}
 }
 
-func NewError(msg string) CodeError {
-	return CodeError{
-		err: errors.New(msg),
-	}
-}
-
-func NewCodeError(code int, msg string) *CodeError {
+func NewError(code int, msg string) *CodeError {
 	return &CodeError{
 		code: code,
 		err:  errors.New(msg),
+	}
+}
+
+func NewCodeError(code int) *CodeError {
+	return &CodeError{
+		code: code,
 	}
 }
 
@@ -36,8 +36,13 @@ func (e *CodeError) Error() string {
 }
 
 func (e *CodeError) Data() *response {
+	msg := ""
+	if e.err != nil {
+		msg = e.err.Error()
+	}
+
 	return &response{
 		ErrCode: e.code,
-		ErrMsg:  e.err.Error(),
+		ErrMsg:  msg,
 	}
 }
