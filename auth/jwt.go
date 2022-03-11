@@ -38,6 +38,6 @@ func (a *JwtAuth) GetToken() (now int64, jwtToken string, err error) {
 	return
 }
 
-func (a *JwtAuth) GetSecretValue(ctx context.Context, key string) interface{} {
+func GetSecretValue(ctx context.Context, key string) interface{} {
 	return ctx.Value(key)
 }
