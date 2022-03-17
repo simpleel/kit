@@ -2,7 +2,6 @@ package auth
 
 import (
 	"context"
-	"fmt"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -29,7 +28,7 @@ func (a *JwtAuth) GetToken() (now int64, jwtToken string, err error) {
 	claims := make(jwt.MapClaims)
 	claims["exp"] = now + a.expire
 	claims["iat"] = now
-	claims[a.key] = fmt.Sprint(a.uniId)
+	claims[a.key] = a.uniId
 
 	token := jwt.New(jwt.SigningMethodHS256)
 	token.Claims = claims
