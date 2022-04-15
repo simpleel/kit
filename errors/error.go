@@ -1,6 +1,11 @@
 package errors
 
-import "errors"
+import (
+	"errors"
+	"strconv"
+
+	"go.simpleel.com/kit/strings"
+)
 
 type CodeError struct {
 	code int
@@ -28,6 +33,7 @@ func NewError(code int, msg string) *CodeError {
 func NewCodeError(code int) *CodeError {
 	return &CodeError{
 		code: code,
+		err:  errors.New(strings.Concat("error code: ", strconv.Itoa(code))),
 	}
 }
 
