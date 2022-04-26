@@ -3,6 +3,8 @@ package query
 import (
 	"fmt"
 	"strings"
+
+	kitstrings "go.simpleel.com/kit/strings"
 )
 
 type condition struct {
@@ -28,7 +30,7 @@ func (c *condition) AndParams() string {
 		return ""
 	}
 
-	return strings.Join(c.params, " and ")
+	return kitstrings.Concat("(", strings.Join(c.params, " and "), ")")
 }
 
 // 返回 or 查询条件
@@ -37,7 +39,7 @@ func (c *condition) OrParams() string {
 		return ""
 	}
 
-	return strings.Join(c.params, " or ")
+	return kitstrings.Concat("(", strings.Join(c.params, " or "), ")")
 }
 
 // 返回有 where 字符串的查询参数字符串
